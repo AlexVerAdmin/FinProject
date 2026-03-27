@@ -180,14 +180,13 @@ Sources/**
 # 5. scripts folder: exclude entirely
 scripts/
 
-
-# 4. Other files in root to ignore (optional, based on request)
-# PROJECT_PLAN.md
-# PROJECT_REQUIREMENTS.md
-# requirements.txt
-# HauptProject.code-workspace
-
+# 6. Exclude root files (requested by user)
+PROJECT_PLAN.md
+PROJECT_REQUIREMENTS.md
+requirements.txt
+HauptProject.code-workspace
 *.code-workspace
+
 
 # Local history
 .history/
