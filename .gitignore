@@ -166,6 +166,7 @@ notebooks/**
 !notebooks/03*
 !notebooks/04*
 !notebooks/05*
+!notebooks/*de.ipynb
 
 # 3. report folder: empty except for .gitkeep
 report/**
