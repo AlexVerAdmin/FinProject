@@ -177,6 +177,7 @@ notebooks/**
 report/**
 !report/
 !report/.gitkeep
+reports
 
 # 4. Sources folder: empty except for .gitkeep
 Sources/**
