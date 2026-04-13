@@ -160,7 +160,7 @@ data/**
 !data/cleaned/.gitkeep
 !data/cleaned/*.pkl
 
-# 2. notebooks folder: only files starting with 01-06
+# 2. notebooks folder: only files starting with 01-08
 notebooks/**
 !notebooks/
 !notebooks/01*
@@ -169,6 +169,10 @@ notebooks/**
 !notebooks/04*
 !notebooks/05*
 !notebooks/06*
+!notebooks/07*
+!notebooks/08*
+!notebooks/07*
+!notebooks/08*
 !notebooks/help_130625*
 !notebooks/geocode_cities*
 !notebooks/*de.ipynb

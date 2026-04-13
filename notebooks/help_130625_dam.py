@@ -3,9 +3,13 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import re
+import math
 from matplotlib.gridspec import GridSpec
 
 from IPython.display import display
+from scipy import stats
+from statsmodels.stats.power import NormalIndPower
+from statsmodels.stats.proportion import proportion_effectsize
 
 COLOR_TEXT = plt.get_cmap('PuBu')(0.85)  # color for subtitles
 FIG_WIDTH = 10
@@ -784,3 +788,39 @@ def visualize_paired_test(before, after, test_result, alpha=0.05):
     plt.tight_layout()
     plt.show()
 
+
+def ab_sample_size(p_base, mde_relative, alpha=0.05, power=0.8):
+    """
+    Рассчитывает размер выборки для одной группы в A/B тесте.
+    Основано на Z-тесте для пропорций (статистика statsmodels).
+    
+    Параметры:
+    ----------
+    p_base : float
+        Базовая конверсия (от 0 до 1)
+    mde_relative : float
+        Относительный минимальный детектируемый эффект (MDE), например 0.10 для +10%
+    alpha : float, default=0.05
+        Уровень значимости
+    power : float, default=0.8
+        Мощность теста (1 - beta)
+        
+    Возвращает:
+    ----------
+    int
+        Необходимый размер выборки для ОДНОЙ группы
+    """
+    p_target = p_base * (1 + mde_relative)
+    # Cohen's h effect size
+    effect_size = proportion_effectsize(p_base, p_target)
+    analysis = NormalIndPower()
+    
+    # Решаем уравнение для n
+    n = analysis.solve_power(
+        effect_size=effect_size, 
+        alpha=alpha, 
+        power=power, 
+        ratio=1.0, 
+        alternative='two-sided'
+    )
+    return int(math.ceil(n))
